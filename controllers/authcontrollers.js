@@ -1,4 +1,4 @@
-const ur = require('../models/usermodels');
+const user = require('../models/usermodels');
 const hashPassword = require('../utils/hashPassword');
 const validatePassword = require('../utils/validatePassword');
 const { generateToken } = require('../utils/jwtUtils');
@@ -11,7 +11,7 @@ exports.register = async (req,res) => {
     }    
 
     try {
-        const existingUser = await ur.findOne({ $or: [{ username }, { email }] });
+        const existingUser = await user.findOne({ $or: [{ username }, { email }] });
         if (existingUser) {
             return res.status(400).json({ message: 'Username or email is already in use' });
         }
