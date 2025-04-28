@@ -12,16 +12,16 @@ exports.createUser = async (req, res) => {
   }
 };
 
-// exports.getAllUsers = async (req, res) => {
-//   try {
-//     const users = await user.find({}).exec();
+exports.getAllUsers = async (req, res) => {
+  try {
+    const users = await user.find({}).exec();
     
-//     res.status(200).json(users);
-//   } catch (error) {
-//     console.log(error);
-//     res.status(500).json('Internal server error');
-//   }
-// };
+    res.status(200).json(users);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json('Internal server error');
+  }
+};
 
 // exports.getUserById = async (req, res) => {
 //   const userId =  req.params.id;
