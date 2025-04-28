@@ -23,50 +23,50 @@ exports.getAllUsers = async (req, res) => {
   }
 };
 
-// exports.getUserById = async (req, res) => {
-//   const userId =  req.params.id;
-//   try {
-//     const user = await user.findById(userId);
+exports.getUserById = async (req, res) => {
+  const userId =  req.params.id;
+  try {
+    const getuser = await user.findById(userId);
 
-//     if (!user) {
-//       return res.status(404).json({ message: 'User not found' });
-//     }
+    if (!getuser) {
+      return res.status(404).json({ message: 'User not found' });
+    }
 
-//     res.status(200).json(user);
-//   } catch (error) {
-//     console.log(error);
-//     res.status(500).json('Internal server error');
-//   }
-// };
+    res.status(200).json(getuser);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json('Internal server error');
+  }
+};
 
-// exports.updateUserById = async (req, res) => {
-//   const userId = req.params.id;
-//   try {
-//     const updatedUser = await user.findByIdAndUpdate(userId, req.body, { new: true, runValidators: true });
+exports.updateUserById = async (req, res) => {
+  const userId = req.params.id;
+  try {
+    const updatedUser = await user.findByIdAndUpdate(userId, req.body, { new: true, runValidators: true });
 
-//     if (!updatedUser) {
-//       return res.status(404).json({ message: 'User not found' });
-//     }
+    if (!updatedUser) {
+      return res.status(404).json({ message: 'User not found' });
+    }
 
-//     res.status(200).json(updatedUser);
-//   } catch (error) {
-//     console.log(error);
-//     res.status(400).json('Internal server error');
-//   }
-// };
+    res.status(200).json(updatedUser);
+  } catch (error) {
+    console.log(error);
+    res.status(400).json('Internal server error');
+  }
+};
 
-// exports.deleteUserById = async (req, res) => {
-//   const userId = req.params.id;
-//   try {
-//     const deletedUser = await user.findByIdAndDelete(userId);
+exports.deleteUserById = async (req, res) => {
+  const userId = req.params.id;
+  try {
+    const deletedUser = await user.findByIdAndDelete(userId);
 
-//     if (!deletedUser) {
-//       return res.status(404).json({ message: 'User not found' });
-//     }
+    if (!deletedUser) {
+      return res.status(404).json({ message: 'User not found' });
+    }
 
-//     res.status(200).json({ message: 'User deleted successfully' });
-//   } catch (error) {
-//     console.log(error);
-//     res.status(400).json('Internal server error');
-//   }
-// };
+    res.status(200).json({ message: 'User deleted successfully' });
+  } catch (error) {
+    console.log(error);
+    res.status(400).json('Internal server error');
+  }
+};
