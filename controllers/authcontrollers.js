@@ -1,4 +1,4 @@
-const User = require('../models/user');
+const ur = require('../models/usermodels');
 const hashPassword = require('../utils/hashPassword');
 const validatePassword = require('../utils/validatePassword');
 const { generateToken } = require('../utils/jwtUtils');
@@ -7,28 +7,28 @@ exports.register = async (req,res) => {
     const { username, email, password } = req.body;
 
     if (!username || !email || !password) {
-        return res.status(400).send('Username, email, and password are required');
+        return res.status(400).json({ message: 'All fields are required' });
     }    
 
     try {
-        const existingUser = await User.findOne({ $or: [{ username }, { email }] });
+        const existingUser = await ur.findOne({ $or: [{ username }, { email }] });
         if (existingUser) {
             return res.status(400).json({ message: 'Username or email is already in use' });
         }
 
         const hashedPassword = await hashPassword(password);
 
-        const newUser = new User({
+        const newdata = new ur({
             username,
             email,
             password: hashedPassword,
         });
 
-        await newUser.save();
+        await newdata.save();
 
         res.status(201).json({ message: 'Register success' });
     } catch (error) {
-        console.error(error);
+        console.log(error);
         res.status(500).json('Internal server error');
     }
 };
@@ -37,11 +37,11 @@ exports.login = async (req,res) => {
     const { username, password } = req.body;
 
     if (!username || !password) {
-        return res.status(400).json({ error: 'Username and password are required' });
+        return res.status(400).json({ error: 'All fields are required' });
     }
 
     try {
-        const user = await User.findOne({ username });
+        const user = await user.findOne({ username });
         if (!user) {
             return res.status(400).json({ error: 'Username not found' });
         }
