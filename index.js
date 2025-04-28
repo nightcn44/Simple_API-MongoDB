@@ -15,6 +15,11 @@ app.use(express.json({ limit: '10mb' }));
 app.use(morgan('dev'));
 app.use(cors());
 
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Something went wrong!');
+});
+
 readdirSync('./routes').map((i) => {
   try {
     console.log(`Loading route: ${i}`);
