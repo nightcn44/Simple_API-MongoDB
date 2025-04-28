@@ -18,7 +18,7 @@ exports.register = async (req,res) => {
 
         const hashedPassword = await hashPassword(password);
 
-        const newdata = new ur({
+        const newdata = new user({
             username,
             email,
             password: hashedPassword,
@@ -41,17 +41,17 @@ exports.login = async (req,res) => {
     }
 
     try {
-        const user = await user.findOne({ username });
-        if (!user) {
+        const data = await user.findOne({ username });
+        if (!data) {
             return res.status(400).json({ error: 'Username not found' });
         }
 
-        const isMatch = await validatePassword(password, user.password);
+        const isMatch = await validatePassword(password, data.password);
         if (!isMatch) {
           return res.status(400).json({ error: 'Invalid password' });
         }
 
-        const token = generateToken(user);
+        const token = generateToken(data);
 
         res.status(200).json({ message: 'Login successful', token });
     } catch (error) {
