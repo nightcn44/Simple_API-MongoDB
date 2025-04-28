@@ -2,8 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../controllers/usercontrollers');
 const { authMiddleware } = require('../middleware/authmiddleware');
-    
-// user routes
+
 router.post('/ur', authMiddleware, User.createUser);
 router.get('/ur', authMiddleware, User.getAllUsers);
 router.get('/ur/:id', authMiddleware, User.getUserById);

@@ -1,6 +1,5 @@
 const bcrypt = require('bcrypt');
 
-// validate password
 const validatePassword = async (inputPassword, storedPassword) => {
     try {
         const isMatch = await bcrypt.compare(inputPassword, storedPassword);
