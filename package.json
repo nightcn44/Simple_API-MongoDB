@@ -1,5 +1,5 @@
 {
-  "name": "newbie_api-mongodb",
+  "name": "simple_backend-1",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,22 +7,26 @@
     "start": "node index.js",
     "dev": "nodemon index.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nightcn44/Simple_backend-1.git"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/nightcn44/Simple_backend-1/issues"
+  },
+  "homepage": "https://github.com/nightcn44/Simple_backend-1#readme",
   "dependencies": {
-    "@prisma/client": "^6.6.0",
-    "bcrypt": "^5.1.1",
     "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.14.0",
+    "mongoose": "^8.14.1",
     "morgan": "^1.10.0",
-    "mysql2": "^3.14.1",
-    "nodemon": "^3.1.10",
-    "prisma": "^6.6.0"
+    "nodemon": "^3.1.10"
   }
 }
