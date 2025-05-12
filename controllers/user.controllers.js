@@ -37,13 +37,16 @@ exports.updateUserById = async (req, res) => {
     if (req.body.password && req.body.password.trim() !== "") {
       updateData.password = await hashPassword(req.body.password);
     }
-    const updatedUser = await user.findByIdAndUpdate(userId, req.body, {
+
+    const updatedUser = await user.findByIdAndUpdate(userId, updateData, {
       new: true,
       runValidators: true,
     });
+
     if (!updatedUser) {
       return res.status(404).json({ message: "User not found" });
     }
+
     res.status(200).json(updatedUser);
   } catch (err) {
     console.log(err);
