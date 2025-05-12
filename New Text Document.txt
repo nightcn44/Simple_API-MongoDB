@@ -1,5 +1,0 @@
-npm init -y
-
-npm install express nodemon morgan cors jsonwebtoken bcryptjs dotenv mongoose
-
-Node.js Express.js MongoDB
