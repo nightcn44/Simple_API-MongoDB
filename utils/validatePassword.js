@@ -5,6 +5,7 @@ const validatePassword = async (inputPassword, storedPassword) => {
     const isMatch = await bcrypt.compare(inputPassword, storedPassword);
     return isMatch;
   } catch (err) {
+    console.error(err);
     throw new Error("Error validating password");
   }
 };

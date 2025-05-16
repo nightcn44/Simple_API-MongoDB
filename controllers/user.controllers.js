@@ -6,6 +6,7 @@ const { generateToken } = require("../utils/jwtUtils");
 exports.getAllUsers = async (req, res) => {
   try {
     const data = await User.find({}).exec();
+
     res.status(200).json(data);
   } catch (err) {
     console.log(err);
@@ -100,8 +101,8 @@ exports.register = async (req, res) => {
     await newdata.save();
 
     res.status(201).json({ message: "Register success" });
-  } catch (error) {
-    console.log(error);
+  } catch (err) {
+    console.log(err);
     res.status(500).json("Internal server error");
   }
 };
@@ -129,8 +130,8 @@ exports.login = async (req, res) => {
     const token = generateToken(data);
 
     res.status(200).json({ message: "Login successful", token });
-  } catch (error) {
-    console.error(error);
+  } catch (err) {
+    console.error(err);
     res.status(500).json("Internal server error");
   }
 };

@@ -15,10 +15,15 @@ app.use(express.json({ limit: "10mb" }));
 app.use(morgan("dev"));
 app.use(cors());
 
+app.use((err, req, res, next) => {
+  console.error("Unexpected error:", err);
+  res.status(500).json({ message: "Something went wrong" });
+});
+
 readdirSync("./routes").map((i) => {
   try {
-    console.log(`Loading route: ${i}`);
     app.use("/api", require("./routes/" + i));
+    console.log(`Loading route: ${i}`);
   } catch (err) {
     console.log(`Error loading route ${i}:`, err);
   }
@@ -29,5 +34,5 @@ app.get("/", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`Server is running on http://localhost:${PORT}`);
 });
