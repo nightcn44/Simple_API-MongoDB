@@ -147,6 +147,7 @@ exports.getMe = async (req, res) => {
     res.json({
       id: user._id,
       username: user.username,
+      email: user.email
     });
   } catch (err) {
     console.error(err);
