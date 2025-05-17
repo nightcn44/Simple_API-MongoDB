@@ -137,8 +137,9 @@ exports.login = async (req, res) => {
 };
 
 exports.getMe = async (req, res) => {
+  const userId = req.user._id;
   try {
-    const user = await User.findById(req.user._id).select("username email");
+    const user = await User.findById(userId).select("username email");
 
     if (!user) {
       return res.status(404).json({ message: "User not found" });
